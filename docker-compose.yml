@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  ### 🔹 Microservicio Autor
+  microservicio_autor:
+    build:
+      context: ./microservicio_autor
+      dockerfile: src/main/docker/Dockerfile.jvm
+    ports:
+      - "8081:8081"
+    environment:
+      - QUARKUS_PROFILE=docker
+      - DATABASE_URL=jdbc:postgresql://db_autor:5432/rweb
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+    depends_on:
+      - db_autor
+
+  ### 🔹 Base de Datos para Autor
+  db_autor:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: rweb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - "5433:5432"
+    volumes:
+      - autor_data:/var/lib/postgresql/data
+
+  ### 🔹 Microservicio Propiedad Intelectual
+  microservicio_propiedad_intelectual:
+    build:
+      context: ./microservicio_propiedad_intelectual
+      dockerfile: src/main/docker/Dockerfile.jvm
+    ports:
+      - "8082:8082"
+    environment:
+      - QUARKUS_PROFILE=docker
+      - DATABASE_URL=jdbc:postgresql://db_propiedad:5432/postgres
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+    depends_on:
+      - db_propiedad
+
+  ### 🔹 Base de Datos para Propiedad Intelectual
+  db_propiedad:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    ports:
+      - "5434:5432"
+    volumes:
+      - propiedad_data:/var/lib/postgresql/data
+
+volumes:
+  autor_data:
+  propiedad_data:
