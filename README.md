@@ -59,30 +59,90 @@ If you want to learn more about building native executables, please consult <htt
 - REST Jackson ([guide](https://quarkus.io/guides/rest#json-serialisation)): Jackson serialization support for Quarkus REST. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it
 - JDBC Driver - PostgreSQL ([guide](https://quarkus.io/guides/datasource)): Connect to the PostgreSQL database via JDBC
 
---- Aqui comando para build docker
+## Docker Commands
+
+### Build Docker Image
+
+To build the Docker image without running tests, use the following commands:
+
+```shell
 ./gradlew build -x test
 ./gradlew clean build -x test
--detener y iniciar 
+```
+
+### Start and Stop Docker Containers
+
+To stop and start Docker containers using Docker Compose, use the following commands:
+
+```shell
 docker-compose down
 docker-compose up -d
+```
 
----Resumen Docker compose:
-Detener y eliminar contenedores:
+### Docker Cleanup
 
+#### Stop and Remove Containers
+
+To stop and remove containers, use:
+
+```shell
 docker-compose down
-Eliminar imágenes:
+```
 
+#### Remove Images
+
+To remove Docker images, use:
+
+```shell
 docker rmi $(docker images -q)
+```
+
+#### Remove Volumes
+
+To remove specific Docker volumes, use:
+
+```shell
 docker volume rm <nombre_volumen>
+```
 
+To remove all unused volumes, use:
 
-Eliminar volúmenes:
-
+```shell
 docker volume prune
-Eliminar redes no utilizadas:
+```
 
+#### Remove Unused Networks
+
+To remove all unused networks, use:
+
+```shell
 docker network prune
-Esto limpiará tu entorno de Docker de contenedores, imágenes, volúmenes y redes.
+```
+
+This will clean your Docker environment of containers, images, volumes, and networks.
+
+### Additional Commands
+
+#### Clean Java Language Server Workspace
+
+To clean and reload the workspace, execute the command:
+
+```shell
+Java: Clean Java Language Server Workspace
+```
+
+This command can be found in the command palette.
+
+#### Refresh Gradle Dependencies
+
+To refresh Gradle dependencies, execute the command:
+
+```shell
+Gradle: Refresh
+```
+
+This command can be found in the command palette.
+
 
 
 

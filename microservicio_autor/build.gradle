@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'io.quarkus'
+    id 'io.quarkus' 
 }
 
 repositories {
@@ -16,6 +16,16 @@ dependencies {
     implementation 'io.quarkus:quarkus-arc'
     testImplementation 'io.quarkus:quarkus-junit5'
     testImplementation 'io.rest-assured:rest-assured'
+   //jakarta
+   implementation 'jakarta.ws.rs:jakarta.ws.rs-api:3.0.0'
+   implementation 'io.quarkus:quarkus-hibernate-orm'
+
+   
+    //lombok
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+	annotationProcessor 'org.projectlombok:lombok:1.18.36'
+	testCompileOnly 'org.projectlombok:lombok:1.18.36'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
 }
 
 group 'uce.edu.ec'
