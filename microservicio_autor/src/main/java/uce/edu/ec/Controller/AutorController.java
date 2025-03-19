@@ -15,16 +15,16 @@ public class AutorController {
     private IAutorServ autorService;
 
     @POST
-    @Path(" ")
+    
     public void insertarAutor(Autor autor) {
-        
-            this.autorService.insertarAutor(autor);
-      
+
+        this.autorService.insertarAutor(autor);
+
     }
 
     @GET
     @Path("/{id}")
-    public Autor buscarAutorPorId(@PathParam("id")  Integer id) {
+    public Autor buscarAutorPorId(@PathParam("id") Integer id) {
         try {
             return this.autorService.buscarAutorPorId(id);
         } catch (Exception e) {

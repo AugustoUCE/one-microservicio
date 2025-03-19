@@ -109,6 +109,8 @@ To remove all unused volumes, use:
 
 ```shell
 docker volume prune
+docker system prune -a
+
 ```
 
 #### Remove Unused Networks
